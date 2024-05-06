@@ -3,18 +3,20 @@ import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import PageNotFound from "./pages/PageNotFound";
+import ProductProvider from "./context/ProductContext";
 
 function App() {
-
-  return (
-    <Routes>
-        <Route index element={<Navigate to="/products" />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<DetailsPage />} />
-        <Route path="/checkout" element={<CheckoutPage/>} />
-        <Route path="/*" element={<PageNotFound/>} />
-    </Routes>
-  );
+	return (
+		<ProductProvider>
+			<Routes>
+				<Route index element={<Navigate to="/products" />} />
+				<Route path="/products" element={<ProductsPage />} />
+				<Route path="/products/:id" element={<DetailsPage />} />
+				<Route path="/checkout" element={<CheckoutPage />} />
+				<Route path="/*" element={<PageNotFound />} />
+			</Routes>
+		</ProductProvider>
+	);
 }
-
-export default App
+//189
+export default App;
