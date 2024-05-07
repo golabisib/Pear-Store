@@ -1,10 +1,12 @@
 import { MagnifyingGlass } from "react-loader-spinner";
 import { useProducts } from "../context/ProductContext";
-import styles from "./ProductPage.module.css";
+import styles from "./ProductsPage.module.css";
+
+import Card from "../components/Card";
 
 function ProductsPage() {
 	const products = useProducts();
-	console.log(products);
+
 
 	return (
 		<div className={styles.container}>
@@ -23,7 +25,7 @@ function ProductsPage() {
 				)}
 
 				{products.map((product) => (
-					<product key={product.id}>{product.title}</product>
+					<Card key={product.id} data={product} />
 				))}
 			</div>
 			<div>SideBar</div>
