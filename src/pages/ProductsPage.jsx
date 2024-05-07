@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LuSearch } from "react-icons/lu";
+import { BiListUl } from "react-icons/bi";
 
 import { useProducts } from "../context/ProductContext";
 
@@ -11,9 +12,18 @@ function ProductsPage() {
 	const products = useProducts();
 
 	const [search, setSearch] = useState("");
-    const searchHandler = () => {
-        console.log("search")
-    }
+	const searchHandler = () => {
+		console.log("search");
+	};
+
+	const categoryHandler = (event) => {
+		const { tagName } = event.target;
+		const category = event.target.innerText.toLowerCase();
+
+		if (tagName !== "LI") return;
+		console.log(category);
+	};
+
 	return (
 		<>
 			<div>
@@ -35,7 +45,19 @@ function ProductsPage() {
 						<Card key={product.id} data={product} />
 					))}
 				</div>
-				<div>SideBar</div>
+				<div>
+					<div>
+						<BiListUl />
+						<p>categories</p>
+					</div>
+					<ul onClick={categoryHandler} onKeyDown={m}>
+						<li>All</li>
+						<li>Electronics</li>
+						<li>Jewellery</li>
+						<li>Men 's Clothing</li>
+						<li>Women 's Clothing</li>
+					</ul>
+				</div>
 			</div>
 		</>
 	);
