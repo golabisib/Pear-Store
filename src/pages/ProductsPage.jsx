@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { LuSearch } from "react-icons/lu";
 import { BiListUl } from "react-icons/bi";
 import { spread } from "axios";
 
 import { useProducts } from "../context/ProductContext";
-import { filterProducts, searchProducts } from "../helpers/helper";
+import {
+	createQueryObject,
+	filterProducts,
+	searchProducts,
+} from "../helpers/helper";
 
 import styles from "./ProductsPage.module.css";
 import Card from "../components/Card";
@@ -17,21 +22,24 @@ function ProductsPage() {
 	const [search, setSearch] = useState("");
 	const [query, setQuery] = useState({});
 
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	useEffect(() => {
+		setSearchParams(query);
 		let finalProducts = searchProducts(products, query.search);
 		finalProducts = filterProducts(finalProducts, query.category);
 		setDisplayed(finalProducts);
-	}, [query, products]);
+	}, [query, products, setSearchParams]);
 
 	const searchHandler = () => {
-		setQuery((query) => ({ ...query, search }));
+		setQuery((query) => createQueryObject(query, { search }));
 	};
 
 	const categoryHandler = (event) => {
 		const { tagName } = event.target;
 		const category = event.target.innerText.toLowerCase();
 		if (tagName !== "LI") return;
-		setQuery((query) => ({ ...query, category }));
+		setQuery((query) => createQueryObject(query, { category }));
 	};
 
 	return (
@@ -63,7 +71,7 @@ function ProductsPage() {
 					<ul onClick={categoryHandler} {...spread}>
 						<li>All</li>
 						<li>Electronics</li>
-						<li>Jewellery</li>
+						<li>Jewelery</li>
 						<li>Men's Clothing</li>
 						<li>Women's Clothing</li>
 					</ul>
