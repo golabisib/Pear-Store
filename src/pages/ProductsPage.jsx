@@ -12,22 +12,28 @@ import { spread } from "axios";
 function ProductsPage() {
 	const products = useProducts();
 
-    const [displayed, setDisplayed] = useState([])
+	const [displayed, setDisplayed] = useState([]);
 	const [search, setSearch] = useState("");
-	const searchHandler = () => {
-		console.log("search");
-	};
+	const [query, setQuery] = useState({});
 
-    useEffect( () => {
-        setDisplayed(products);
-    }, [products]);
+	useEffect(() => {
+		setDisplayed(products);
+	}, [products]);
+
+	useEffect(() => {
+		console.log(query);
+	}, [query]);
+
+
+	const searchHandler = () => {
+		setQuery((query) => ({ ...query, search }));
+	};
 
 	const categoryHandler = (event) => {
 		const { tagName } = event.target;
 		const category = event.target.innerText.toLowerCase();
-
 		if (tagName !== "LI") return;
-		console.log(category);
+		setQuery((query) => ({ ...query, category }));
 	};
 
 	return (
@@ -56,7 +62,7 @@ function ProductsPage() {
 						<BiListUl />
 						<p>categories</p>
 					</div>
-					<ul onClick={categoryHandler} {...spread} >
+					<ul onClick={categoryHandler} {...spread}>
 						<li>All</li>
 						<li>Electronics</li>
 						<li>Jewellery</li>
