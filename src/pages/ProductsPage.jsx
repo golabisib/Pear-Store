@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { BiListUl } from "react-icons/bi";
+import { spread } from "axios";
 
 import { useProducts } from "../context/ProductContext";
+import { filterProducts, searchProducts } from "../helpers/helper";
 
 import styles from "./ProductsPage.module.css";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
-import { spread } from "axios";
 
 function ProductsPage() {
 	const products = useProducts();
@@ -17,13 +18,10 @@ function ProductsPage() {
 	const [query, setQuery] = useState({});
 
 	useEffect(() => {
-		setDisplayed(products);
-	}, [products]);
-
-	useEffect(() => {
-		console.log(query);
-	}, [query]);
-
+		let finalProducts = searchProducts(products, query.search);
+		finalProducts = filterProducts(finalProducts, query.category);
+		setDisplayed(finalProducts);
+	}, [query, products]);
 
 	const searchHandler = () => {
 		setQuery((query) => ({ ...query, search }));
@@ -66,8 +64,8 @@ function ProductsPage() {
 						<li>All</li>
 						<li>Electronics</li>
 						<li>Jewellery</li>
-						<li>Men 's Clothing</li>
-						<li>Women 's Clothing</li>
+						<li>Men's Clothing</li>
+						<li>Women's Clothing</li>
 					</ul>
 				</div>
 			</div>
