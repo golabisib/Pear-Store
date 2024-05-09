@@ -47,10 +47,10 @@ function ProductsPage() {
 						<Card key={product.id} data={product} />
 					))}
 				</div>
-				<SideBar setQuery={setQuery} />
+				<SideBar setQuery={setQuery} query={query} />
 			</div>
 		</>
 	);
 }
-
+//201
 export default ProductsPage;

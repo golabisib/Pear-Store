@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
 import { BiCartAdd } from "react-icons/bi";
@@ -30,6 +31,15 @@ function Card({ data }) {
 			</div>
 		</div>
 	);
+}
+
+Card.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.any,
+    image: PropTypes.any,
+    price: PropTypes.any,
+    title: PropTypes.any
+  })
 }
 
 export default Card;

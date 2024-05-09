@@ -2,13 +2,15 @@ import PropTypes from "prop-types";
 import { LuSearch } from "react-icons/lu";
 import { createQueryObject } from "../helpers/helper";
 
+import styles from "./SearchBox.module.css"
+
 function SearchBox({ search, setSearch, setQuery }) {
 	const searchHandler = () => {
 		setQuery((query) => createQueryObject(query, { search }));
 	};
 
 	return (
-		<div>
+		<div className={styles.search}>
 			<div>
 				<input
 					type="text"

@@ -3,7 +3,10 @@ import { BiListUl } from "react-icons/bi";
 import { createQueryObject } from "../helpers/helper";
 import { spread } from "axios";
 
-function SideBar({ setQuery }) {
+import styles from "./SideBar.module.css";
+import { categories } from "../constant/list";
+
+function SideBar({ setQuery, query }) {
 	const categoryHandler = (event) => {
 		const { tagName } = event.target;
 		const category = event.target.innerText.toLowerCase();
@@ -11,18 +14,25 @@ function SideBar({ setQuery }) {
 		setQuery((query) => createQueryObject(query, { category }));
 	};
 	return (
-		<div>
+		<div className={styles.sidebar}>
 			<div>
 				<div>
 					<BiListUl />
 					<p>categories</p>
 				</div>
 				<ul onClick={categoryHandler} {...spread}>
-					<li>All</li>
-					<li>Electronics</li>
-					<li>Jewelery</li>
-					<li>Men's Clothing</li>
-					<li>Women's Clothing</li>
+					{categories.map((item) => (
+						<li
+							key={item.id}
+							className={
+								item.type.toLocaleLowerCase() === query.category
+									? styles.selected
+									: null
+							}
+						>
+							{item.type}
+						</li>
+					))}
 				</ul>
 			</div>
 		</div>
@@ -30,6 +40,7 @@ function SideBar({ setQuery }) {
 }
 
 SideBar.propTypes = {
+	query: PropTypes.any,
 	setQuery: PropTypes.func,
 };
 
