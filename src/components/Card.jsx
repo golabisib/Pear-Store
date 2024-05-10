@@ -1,14 +1,22 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { BiCartAdd } from "react-icons/bi";
 import { TbListDetails } from "react-icons/tb";
+
 import { shortenText } from "../helpers/helper";
+import { useCart } from "../context/CartContext";
 
 import styles from "./Card.module.css";
 
 function Card({ data }) {
 	const { id, title, image, price } = data;
+
+	const [state, dispatch] = useCart();
+
+    const clickHandler = () => {
+        dispatch({type: "add", payload: data})
+    }
 
 	return (
 		<div className={styles.card}>
@@ -22,8 +30,8 @@ function Card({ data }) {
 					<TbListDetails />{" "}
 				</Link>
 				<div>
-                    <span> </span>
-					<button type="button">
+					<span> </span>
+					<button type="button" onClick={clickHandler}>
 						{" "}
 						<BiCartAdd />{" "}
 					</button>
@@ -34,12 +42,12 @@ function Card({ data }) {
 }
 
 Card.propTypes = {
-  data: PropTypes.shape({
-    id: PropTypes.any,
-    image: PropTypes.any,
-    price: PropTypes.any,
-    title: PropTypes.any
-  })
-}
+	data: PropTypes.shape({
+		id: PropTypes.any,
+		image: PropTypes.any,
+		price: PropTypes.any,
+		title: PropTypes.any,
+	}),
+};
 
 export default Card;

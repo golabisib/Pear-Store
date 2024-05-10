@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/config";
 
@@ -22,6 +23,10 @@ function ProductProvider({ children }) {
 			{children}
 		</ProductContext.Provider>
 	);
+}
+
+ProductProvider.propTypes = {
+  children: PropTypes.any
 }
 // Custom Hook:
 const useProducts = () => {
