@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 import { BiCartAdd } from "react-icons/bi";
 import { TbListDetails } from "react-icons/tb";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 
-import { shortenText } from "../helpers/helper";
+import { productQuantity, shortenText } from "../helpers/helper";
 import { useCart } from "../context/CartContext";
 
 import styles from "./Card.module.css";
@@ -13,11 +16,13 @@ function Card({ data }) {
 	const { id, title, image, price } = data;
 
 	const [state, dispatch] = useCart();
-    console.log(state);
 
-    const clickHandler = () => {
-        dispatch({type: "ADD_ITEM", payload: data})
-    }
+	const quantity = productQuantity(state, id);
+	console.log(quantity);
+
+	const clickHandler = (type) => {
+		dispatch({ type, payload: data });
+	};
 
 	return (
 		<div className={styles.card}>
@@ -31,11 +36,26 @@ function Card({ data }) {
 					<TbListDetails />{" "}
 				</Link>
 				<div>
-					<span> </span>
-					<button type="button" onClick={clickHandler}>
-						{" "}
-						<BiCartAdd />{" "}
-					</button>
+					{quantity === 0 ? (
+						<button type="button" onClick={() => clickHandler("ADD_ITEM")}>
+							<BiCartAdd />
+						</button>
+					) : (
+						<button type="button" onClick={() => clickHandler("INCREASE")}>
+							<FaPlus />
+						</button>
+					)}
+                    {quantity > 0 ?  <span>{quantity}</span> : null}
+					{quantity > 1 && (
+						<button type="button" onClick={() => clickHandler("DECREASE")}>
+							<FaMinus />
+						</button>
+					)}
+					{quantity === 1 && (
+						<button type="button" onClick={() => clickHandler("REMOVE_ITEM")}>
+							<RiDeleteBinFill />
+						</button>
+					)}
 				</div>
 			</div>
 		</div>
