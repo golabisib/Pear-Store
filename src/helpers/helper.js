@@ -21,10 +21,12 @@ const filterProducts = (products, category) => {
 const createQueryObject = (currentQuery, newQuery) => {
 	if (newQuery.category === "all") {
 		const { category, ...rest } = currentQuery;
+		category;
 		return rest;
 	}
 	if (newQuery.search === "") {
 		const { search, ...rest } = currentQuery;
+		search;
 		return rest;
 	}
 	return {
@@ -60,10 +62,8 @@ const productQuantity = (state, id) => {
 	const index = state.selectedItems.findIndex((item) => item.id === id);
 	if (index === -1) {
 		return 0;
-	} else {
-		return state.selectedItems[index].quantity;
-
 	}
+	return state.selectedItems[index].quantity;
 };
 
 export {

@@ -25,8 +25,11 @@ function ProductsPage() {
 
 	useEffect(() => {
 		setDisplayed(products);
-		setQuery(getInitialQuery(searchParams));
 	}, [products]);
+
+    useEffect( () => {
+        setQuery(getInitialQuery(searchParams));
+    },[searchParams])
 
 	useEffect(() => {
 		setSearchParams(query);
