@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100px;
+    width: 100%;
+
+    img {
+        width: 300px;
+        padding: 15px 25px;
+        mix-blend-mode: darken;
+        margin: 10px;
+        margin-right: 50px;
+    }
+}
+
+.information {
+    width: 100%;
+    border: 2px solid #e2e2e2;
+    margin: 10px;
+    padding: 25px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    background-color: #ceffe9;
+
+    h3 {
+        color: #22578f;
+        font-size: 1.4rem;
+        margin-bottom: 35px;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+    }
+
+    a {
+        background-color: #91ffce;
+        padding: 5px 10px;
+        color: #0f253d;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+
+        span {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.description {
+    color: #0f253d;
+    width: auto;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.category {
+    display: flex;
+        align-items: center;
+    margin-bottom: 15px;
+}
+
+.category svg ,
+.information  span svg  {
+    color: #22578f;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
