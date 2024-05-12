@@ -1,0 +1,45 @@
+.sideBar {
+    background-color:#ceffe9 ;
+    width: 300px;
+    margin-right: 30px;
+    padding: 20px;
+    border: 2px dashed #e2e2e2;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+
+    div {
+        display: flex;
+        align-items: center;
+        color: #0f253d;
+        margin-bottom: 15px;
+
+        svg {
+            font-size: 1.3rem;
+            margin-right: 7px;
+        }
+
+        span {
+            color: gray;
+            margin-left: 10px;
+        }
+    }
+
+    button {
+        width: 100%;
+        margin-top: 40px;
+        background-color: #91ffce;
+        color: #22578f;
+        border: none;
+        font-size: 1rem;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+}
