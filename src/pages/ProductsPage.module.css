@@ -10,3 +10,9 @@
     justify-content: space-between;
 }
 
+@media (max-width:540px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -40,7 +40,7 @@ function ProductsPage() {
 	}, [query, products, setSearchParams]);
 
 	return (
-		<>
+		<div className={styles.main}>
 			<SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
 
 			<div className={styles.container}>
@@ -52,7 +52,7 @@ function ProductsPage() {
 				</div>
 				<SideBar setQuery={setQuery} query={query} />
 			</div>
-		</>
+		</div>
 	);
 }
 //201
