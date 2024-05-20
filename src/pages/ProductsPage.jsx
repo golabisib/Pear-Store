@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../.features/product/productSlice";
-// import { useProducts } from "../context/ProductContext";
 import {
-  filterProducts,
-  getInitialQuery,
-  searchProducts,
+    filterProducts,
+    getInitialQuery,
+    searchProducts,
 } from "../helpers/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-import styles from "./ProductsPage.module.css";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 import SearchBox from "../components/SearchBox";
 import SideBar from "../components/SideBar";
+import { fetchProducts } from "../.features/product/productSlice";
+import styles from "./ProductsPage.module.css";
+import { useSearchParams } from "react-router-dom";
+
+// import { useProducts } from "../context/ProductContext";
+
 
 function ProductsPage() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function ProductsPage() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setDisplayed(products);
