@@ -1,16 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import ProductsPage from "./pages/ProductsPage";
-import DetailsPage from "./pages/DetailsPage";
+
 import CheckoutPage from "./pages/CheckoutPage";
-import PageNotFound from "./pages/PageNotFound";
+import DetailsPage from "./pages/DetailsPage";
 // import ProductProvider from "./context/ProductContext";
 // import CartProvider from "./context/CartContext";
 import Layout from "./layout/Layout";
+import PageNotFound from "./pages/PageNotFound";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
 	return (
-		//<CartProvider>
-			//<ProductProvider>
+
 				<Layout>
 					<Routes>
 						<Route index element={<Navigate to="/products" />} />
@@ -20,8 +20,6 @@ function App() {
 						<Route path="/*" element={<PageNotFound />} />
 					</Routes>
 				</Layout>
-			//</ProductProvider>
-		//</CartProvider>
 	);
 }
 //191
