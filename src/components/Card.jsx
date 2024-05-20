@@ -1,29 +1,29 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { addItem, decrease, increase, removeItem } from "../.features/cart/cartSlice";
+import { productQuantity, shortenText } from "../helpers/helper";
+import { useDispatch, useSelector } from "react-redux";
 
 import { BiCartAdd } from "react-icons/bi";
-import { TbListDetails } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
+import { TbListDetails } from "react-icons/tb";
+import styles from "./Card.module.css";
 
-import { productQuantity, shortenText } from "../helpers/helper";
 // import { useCart } from "../context/CartContext";
 
-import styles from "./Card.module.css";
+
 
 function Card({ data }) {
 	const { id, title, image, price } = data;
 
 	// const [state, dispatch] = useCart();
+    const state = useSelector(store => store.cart);
+    const dispatch = useDispatch();
 
-	// const quantity = productQuantity(state, id);
-	const quantity = 0;
-	console.log(quantity);
+	const quantity = productQuantity(state, id);
 
-	const clickHandler = (type) => {
-		// dispatch({ type, payload: data });
-	};
+
 
 	return (
 		<div className={styles.card}>
@@ -38,22 +38,22 @@ function Card({ data }) {
 				</Link>
 				<div>
 					{quantity === 0 ? (
-						<button type="button" onClick={() => clickHandler("ADD_ITEM")}>
+						<button type="button" onClick={() => dispatch(addItem(data))}>
 							<BiCartAdd />
 						</button>
 					) : (
-						<button type="button" onClick={() => clickHandler("INCREASE")}>
+						<button type="button" onClick={() => dispatch(increase(data))}>
 							<FaPlus />
 						</button>
 					)}
                     {quantity > 0 ?  <span>{quantity}</span> : null}
 					{quantity > 1 && (
-						<button type="button" onClick={() => clickHandler("DECREASE")}>
+						<button type="button" onClick={() => dispatch(decrease(data))}>
 							<FaMinus />
 						</button>
 					)}
 					{quantity === 1 && (
-						<button type="button" onClick={() => clickHandler("REMOVE_ITEM")}>
+						<button type="button" onClick={() => dispatch(removeItem(data))}>
 							<RiDeleteBinFill />
 						</button>
 					)}

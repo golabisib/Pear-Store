@@ -29,7 +29,7 @@ function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts())
   }, [dispatch]);
 
   useEffect(() => {

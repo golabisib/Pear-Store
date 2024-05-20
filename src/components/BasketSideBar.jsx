@@ -1,11 +1,13 @@
-import PropTypes from "prop-types";
 import { BsFillPatchPlusFill } from "react-icons/bs";
 import { GoChecklist } from "react-icons/go";
 import { HiMiniHashtag } from "react-icons/hi2";
-
+import PropTypes from "prop-types";
+import { checkout } from "../.features/cart/cartSlice";
 import styles from "./BasketSideBar.module.css";
+import { useDispatch } from "react-redux";
 
-function BasketSideBar({ state, clickHandler }) {
+function BasketSideBar({ state }) {
+    const dispatch = useDispatch()
 	return (
 		<div className={styles.sideBar}>
 			<div>
@@ -23,7 +25,7 @@ function BasketSideBar({ state, clickHandler }) {
 				<p>status:</p>
 				<span>{!state.checkout && "Pending..."}</span>
 			</div>
-			<button type="button" onClick={() => clickHandler("CHECKOUT")}>
+			<button type="button" onClick={() => dispatch(checkout())}>
 				checkout
 			</button>
 		</div>
