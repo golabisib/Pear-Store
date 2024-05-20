@@ -8,20 +8,21 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
 import { productQuantity, shortenText } from "../helpers/helper";
-import { useCart } from "../context/CartContext";
+// import { useCart } from "../context/CartContext";
 
 import styles from "./Card.module.css";
 
 function Card({ data }) {
 	const { id, title, image, price } = data;
 
-	const [state, dispatch] = useCart();
+	// const [state, dispatch] = useCart();
 
-	const quantity = productQuantity(state, id);
+	// const quantity = productQuantity(state, id);
+	const quantity = 0;
 	console.log(quantity);
 
 	const clickHandler = (type) => {
-		dispatch({ type, payload: data });
+		// dispatch({ type, payload: data });
 	};
 
 	return (

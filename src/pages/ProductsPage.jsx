@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { useProducts } from "../context/ProductContext";
+// import { useProducts } from "../context/ProductContext";
 import {
 	filterProducts,
 	getInitialQuery,
@@ -15,7 +15,7 @@ import SearchBox from "../components/SearchBox";
 import SideBar from "../components/SideBar";
 
 function ProductsPage() {
-	const products = useProducts();
+	const products = [];
 
 	const [displayed, setDisplayed] = useState([]);
 	const [search, setSearch] = useState("");

@@ -3,14 +3,14 @@ import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import PageNotFound from "./pages/PageNotFound";
-import ProductProvider from "./context/ProductContext";
-import CartProvider from "./context/CartContext";
+// import ProductProvider from "./context/ProductContext";
+// import CartProvider from "./context/CartContext";
 import Layout from "./layout/Layout";
 
 function App() {
 	return (
-		<CartProvider>
-			<ProductProvider>
+		//<CartProvider>
+			//<ProductProvider>
 				<Layout>
 					<Routes>
 						<Route index element={<Navigate to="/products" />} />
@@ -20,8 +20,8 @@ function App() {
 						<Route path="/*" element={<PageNotFound />} />
 					</Routes>
 				</Layout>
-			</ProductProvider>
-		</CartProvider>
+			//</ProductProvider>
+		//</CartProvider>
 	);
 }
 //191
